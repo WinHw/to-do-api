@@ -18,22 +18,28 @@ class Item extends ResourceController
   // GET -> /item
   public function index()
   {
-    $status = $this->request->getVar('status') ?? 'all';
-    if (!in_array($status, ['to-do', 'done', 'hidden'])) $status = 'all';
-    if ($status != 'all') $this->model->where('status', $status);
-    $this->model->orderBy('id', 'DESC');
-    $data = $this->model->findAll();
-
-    if (count($data) > 0) {
+    try {
+      $status = $this->request->getVar('status') ?? 'all';
+      if (!in_array($status, ['to-do', 'done', 'hidden'])) $status = 'all';
+      if ($status != 'all') $this->model->where('status', $status);
+      $this->model->orderBy('id', 'DESC');
+      $data = $this->model->findAll();
+      
+      if (count($data) > 0) {
+        return $this->respond([
+          'message' => 'Get List of Item Success',
+          'result' => $data,
+        ], 200, 'OK');
+      }else {
+        return $this->respond([
+          'message' => 'No Item could be found',
+          'result' => [],
+        ], 404, 'Not Found');
+      }
+    } catch (Exception $ex) {
       return $this->respond([
-        'message' => 'Get List of Item Success',
-        'result' => $data,
-      ], 200, 'OK');
-    }else {
-      return $this->respond([
-        'message' => 'No Item could be found',
-        'result' => [],
-      ], 404, 'Not Found');
+        'message' => 'Something went wrong, please try again later',
+      ], 500, 'Internal Server Error');
     }
   }
 
