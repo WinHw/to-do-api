@@ -59,7 +59,7 @@ class Item extends ResourceController
         if ($this->model->insert($data)) {
           return $this->respond([
             'message' => 'Item has been added to to-do list',
-            'result' => $this->model->getInsertID()
+            'new_id' => $this->model->getInsertID()
           ], 201, 'Created');
         } else {
           return $this->respond([
