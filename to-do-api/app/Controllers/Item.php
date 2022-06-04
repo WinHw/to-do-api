@@ -33,7 +33,7 @@ class Item extends ResourceController
       return $this->respond([
         'message' => 'No Item could be found',
         'result' => [],
-      ], 204, 'No Content');
+      ], 404, 'Not Found');
     }
   }
 
