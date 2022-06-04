@@ -79,6 +79,7 @@ class Item extends ResourceController
     }
   }
 
+  // PUT -? /item/{id}
   public function update($id = null)
   {
     if (is_null($id)) {
