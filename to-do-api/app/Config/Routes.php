@@ -39,6 +39,8 @@ $routes->get('/', 'Home::index');
 // $routes->resource('item', ['controller' => 'Item']);
 $routes->get('/item', 'Item::index');
 $routes->put('/item', 'Item::create');
+$routes->patch('/item/(:segment)', 'Item::update/$1');
+$routes->put('/item/(:segment)', 'Item::update/$1');
 
 
 /*
