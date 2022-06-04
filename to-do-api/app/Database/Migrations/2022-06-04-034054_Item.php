@@ -26,7 +26,7 @@ class Item extends Migration
             'status' => [
                 'type' => 'ENUM("to-do","done", "hidden")',
                 'default' => 'to-do',
-                'null' => true,
+                'null' => false,
             ],
         ]);
         // Menambahkan primary key
@@ -37,6 +37,7 @@ class Item extends Migration
 
     public function down()
     {
-        //
+        // mebghapus table items
+        $this->forge->dropTable('items');
     }
 }
