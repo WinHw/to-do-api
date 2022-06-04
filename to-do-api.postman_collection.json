@@ -1,0 +1,1192 @@
+{
+	"info": {
+		"_postman_id": "0946ec56-3105-4434-9208-87b88df198ab",
+		"name": "to-do-api",
+		"description": "API ini bertujuan untuk melakukan beberapa proses terkait to-do list, seperti *create*, *retrieve*, hingga *update* item dari list.\n\n* * *\n\n## Pre-quisites\n\n*   Download folder project CodeIgniter 4 `to-do-api` dari repositori GitHub [WinHw/to-do-api](https://github.com/WinHw/to-do-api/tree/master/to-do-api)\n*   Hidupkan Apache dan MySQL dari XAMPP Anda, pastikan Anda juga telah menyediakan Composer\n*   Pada akun `root` tanpa password MySQL Anda, buatlah terlebih dahulu database bernama `to_do_api`\n*   Pada direktori folder project `to-do-api` di command prompt, ketikkan beberapa command berikut\n    \n\n``` powershell\nphp spark migrate\nphp spark serve\n\n```\n\n*   Perhatikan port localhost yang muncul setelah eksekusi command, port ini yang akan digunakan sebagai base pada URL Endpoints. Contoh port **8080** dapat dilihat pada baris `CodeIgniter development server started on` [`http://localhost:8080`](http://localhost:8080)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20089916"
+	},
+	"item": [
+		{
+			"name": "Retrieve List of Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/item?status={status}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "{status}",
+							"description": "**[optional]** `status` dapat diisi dengan `to-do`, `done`, atau `hidden` sebgai penentu jenis list item yang akan dikembalikan"
+						}
+					]
+				},
+				"description": "Endpoint ini bertujuan untuk mendapatkan daftar item pada to-do list, dapat juga dipilah berdasarkan status item dengan menempatkan nilai `status` di *query parameter request*."
+			},
+			"response": [
+				{
+					"name": "List of any status Item retrieved",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:20:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Get List of Item Success\",\n    \"result\": [\n        {\n            \"id\": \"3\",\n            \"detail\": \"Menyelesaikan kuis dari lab RJ sebelum tengah malam juga\",\n            \"status\": \"to-do\"\n        },\n        {\n            \"id\": \"2\",\n            \"detail\": \"Menyelesaikan kuis dari lab PM sebelum tengah malam\",\n            \"status\": \"to-do\"\n        },\n        {\n            \"id\": \"1\",\n            \"detail\": \"Menyelesaikan kuis PI sebelum malam\",\n            \"status\": \"done\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "List of exact status Item retrieved",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/item?status=to-do",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "to-do"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:22:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Get List of Item Success\",\n    \"result\": [\n        {\n            \"id\": \"3\",\n            \"detail\": \"Menyelesaikan kuis dari lab RJ sebelum tengah malam juga\",\n            \"status\": \"to-do\"\n        },\n        {\n            \"id\": \"2\",\n            \"detail\": \"Menyelesaikan kuis dari lab PM sebelum tengah malam\",\n            \"status\": \"to-do\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "List of Item is empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/item?status=hidden",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "hidden"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:25:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No Item could be found\",\n    \"result\": []\n}"
+				},
+				{
+					"name": "Unexpected error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 05:15:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Debugbar-Time",
+							"value": "1654319732.225840"
+						},
+						{
+							"key": "Debugbar-Link",
+							"value": "http://localhost:8080/index.php?debugbar_time=1654319732.225840"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Something went wrong, please try again later\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create To-do Item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "detail",
+							"value": "{detail}",
+							"description": "`detail` akan diisi dengan konten yang akan ditambahkan ke dalam to-do list",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item"
+					]
+				},
+				"description": "Endpoint ini bertujuan untuk membuat item baru pada to-do list. Pada endpoint ini, parameter berupa `detail` wajib dikirimkan dalam bentuk *body urlencoded request* agar proses *create* berjalan dengan baik."
+			},
+			"response": [
+				{
+					"name": "To-do Item created",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "Menyelesaikan kuis dari lab RJ sebelum tengah malam juga",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 07:56:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Item has been added to to-do list\",\n    \"new_id\": 3\n}"
+				},
+				{
+					"name": "Missing parameter(s)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 05:06:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Debugbar-Time",
+							"value": "1654319171.959425"
+						},
+						{
+							"key": "Debugbar-Link",
+							"value": "http://localhost:8080/index.php?debugbar_time=1654319171.959425"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Parameter(s) might not fulfilled basic requirement(s)\",\n    \"parameter\": {\n        \"detail\": \"Detail of to-do item is required\"\n    }\n}"
+				},
+				{
+					"name": "Unexpected error",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "Menyelesaikan kuis PI sebelum malam",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 05:15:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Debugbar-Time",
+							"value": "1654319732.225840"
+						},
+						{
+							"key": "Debugbar-Link",
+							"value": "http://localhost:8080/index.php?debugbar_time=1654319732.225840"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Something went wrong while inserting item, please try again later\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Item (Either or Both)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "detail",
+							"value": "{detail}",
+							"description": "**[optional]** `detail` akan diisi dengan konten yang akan disunting terhadap detail dari `id` target",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{status}",
+							"description": "**[optional]** `status` akan diisi dengan status terbaru terhadap status dari `id` target, hanya dapat memuat `to-do`, `done`, atau `hidden`",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"{id}"
+					]
+				},
+				"description": "Endpoint ini bertujuan untuk menyunting sebagian item pada to-do list, baik sunting `detail` atau `status`. Endpoint ini memang menerima `detail` dan `status` secara optional pada *body urlencoded request* namun minimal salah satu parameter tersebut wajib dikirimkan. `{id}` pada URL endpoint harap diisi dengan `id` dari item yang akan disunting, yang dapat didapatkan melalui endpoint *Retrieve List of Item*."
+			},
+			"response": [
+				{
+					"name": "Item updated",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "Menyelesaikan kuis dari lab PM sebelum tengah malam",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:05:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Item has been updated\"\n}"
+				},
+				{
+					"name": "Invalid parameter(s)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "yeay",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"2"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:06:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Parameter(s) might not fulfilled basic requirement(s)\",\n    \"parameter\": {\n        \"status\": \"Updated status item must be filled between 'to-do', 'done', or 'hidden'\"\n    }\n}"
+				},
+				{
+					"name": "Unexpected error",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "Menyelesaikan kuis PI sebelum malam",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"2"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 05:15:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Debugbar-Time",
+							"value": "1654319732.225840"
+						},
+						{
+							"key": "Debugbar-Link",
+							"value": "http://localhost:8080/index.php?debugbar_time=1654319732.225840"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Something went wrong while updating item, please try again later\"\n}"
+				},
+				{
+					"name": "Missing parameter(s)",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"2"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:09:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Either detail or status must be sent as body request to action updating item\"\n}"
+				},
+				{
+					"name": "Item ID not found",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "hidden",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"5"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:19:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Item with this id is not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update/Replace Item (Both)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "detail",
+							"value": "{detail}",
+							"description": "`detail` akan diisi dengan konten yang akan disunting terhadap detail dari `id` target",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{status}",
+							"description": "`status` akan diisi dengan status terbaru terhadap status dari `id` target, hanya dapat memuat `to-do`, `done`, atau `hidden`",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"{id}"
+					]
+				},
+				"description": "Endpoint ini bertujuan untuk menyunting item pada to-do list dengan menerima `detail` dan `status` pada *body urlencoded request* . `{id}` pada URL endpoint harap diisi dengan `id` dari item yang akan disunting, yang dapat didapatkan melalui endpoint *Retrieve List of Item*."
+			},
+			"response": [
+				{
+					"name": "Item updated",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "Menyelesaikan kuis PI sebelum malam",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "done",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:14:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Item has been updated\"\n}"
+				},
+				{
+					"name": "Invalid parameter(s)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "yeay",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:15:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Parameter(s) might not fulfilled basic requirement(s)\",\n    \"parameter\": {\n        \"detail\": \"Updated detail item is required\",\n        \"status\": \"Updated status item must be filled between 'to-do', 'done', or 'hidden'\"\n    }\n}"
+				},
+				{
+					"name": "Missing parameter(s)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:16:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Both detail and status must be sent as body request to action updating item\",\n    \"advice\": \"If you are going to update either just detail or status, maybe you should try PATCH method\"\n}"
+				},
+				{
+					"name": "Unexpected error",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "Menyelesaikan kuis PI sebelum malam",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "done",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"2"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 05:15:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Debugbar-Time",
+							"value": "1654319732.225840"
+						},
+						{
+							"key": "Debugbar-Link",
+							"value": "http://localhost:8080/index.php?debugbar_time=1654319732.225840"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Something went wrong while updating item, please try again later\"\n}"
+				},
+				{
+					"name": "Item ID not found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "detail",
+									"value": "new to do",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "hidden",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/item/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"5"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8080"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Jun 2022 08:18:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.28"
+						},
+						{
+							"key": "Cache-control",
+							"value": "no-store, max-age=0, no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Item with this id is not found\"\n}"
+				}
+			]
+		}
+	]
+}
